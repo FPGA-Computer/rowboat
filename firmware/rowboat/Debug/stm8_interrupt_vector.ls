@@ -58,8 +58,8 @@
  120  003d 00            	dc.b	page(f_TIM2_Update_IRQ)
  121  003e 0000          	dc.w	f_TIM2_Update_IRQ
  122  0040 82            	dc.b	130
- 124  0041 00            	dc.b	page(f_Default_IRQ_Handler)
- 125  0042 0000          	dc.w	f_Default_IRQ_Handler
+ 124  0041 00            	dc.b	page(f_TIM2_Capture_IRQ)
+ 125  0042 0000          	dc.w	f_TIM2_Capture_IRQ
  126  0044 82            	dc.b	130
  128  0045 00            	dc.b	page(f_Default_IRQ_Handler)
  129  0046 0000          	dc.w	f_Default_IRQ_Handler
@@ -108,5 +108,6 @@
  235                     	xdef	__vectab
  236                     	xdef	f_Default_IRQ_Handler
  237                     	xref	__stext
- 238                     	xref	f_TIM2_Update_IRQ
- 257                     	end
+ 238                     	xref	f_TIM2_Capture_IRQ
+ 239                     	xref	f_TIM2_Update_IRQ
+ 258                     	end

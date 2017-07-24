@@ -9,105 +9,144 @@
   20  0005 0000          	dc.w	0
   21  0007 0000          	dc.w	0
   22  0009 00            	dc.b	0
-  23  000a               _Forward_Tbl:
-  24  000a 0bb8          	dc.w	3000
-  25  000c 0fa0          	dc.w	4000
-  26  000e 28            	dc.b	40
-  27  000f 0fa0          	dc.w	4000
-  28  0011 0bb8          	dc.w	3000
-  29  0013 01            	dc.b	1
-  30  0014 0bb8          	dc.w	3000
-  31  0016 0bb8          	dc.w	3000
-  32  0018 05            	dc.b	5
-  33  0019 0bb8          	dc.w	3000
-  34  001b 07d0          	dc.w	2000
-  35  001d 28            	dc.b	40
-  36  001e 07d0          	dc.w	2000
-  37  0020 0bb8          	dc.w	3000
-  38  0022 01            	dc.b	1
-  39  0023 0bb8          	dc.w	3000
-  40  0025 0bb8          	dc.w	3000
-  41  0027 05            	dc.b	5
-  42  0028 0000          	dc.w	0
-  43  002a 0000          	dc.w	0
-  44  002c 00            	dc.b	0
-  45  002d               _Left_Tbl:
-  46  002d 0bb8          	dc.w	3000
-  47  002f 09c4          	dc.w	2500
-  48  0031 0f            	dc.b	15
-  49  0032 09c4          	dc.w	2500
-  50  0034 09c4          	dc.w	2500
-  51  0036 14            	dc.b	20
-  52  0037 09c4          	dc.w	2500
-  53  0039 07d0          	dc.w	2000
-  54  003b 0f            	dc.b	15
-  55  003c 07d0          	dc.w	2000
-  56  003e 0bb8          	dc.w	3000
-  57  0040 1e            	dc.b	30
-  58  0041 0000          	dc.w	0
-  59  0043 0000          	dc.w	0
-  60  0045 00            	dc.b	0
-  61  0046               _Right_Tbl:
-  62  0046 0bb8          	dc.w	3000
-  63  0048 0dac          	dc.w	3500
-  64  004a 0f            	dc.b	15
-  65  004b 0dac          	dc.w	3500
-  66  004d 0dac          	dc.w	3500
-  67  004f 14            	dc.b	20
-  68  0050 0dac          	dc.w	3500
-  69  0052 0fa0          	dc.w	4000
-  70  0054 0f            	dc.b	15
-  71  0055 0fa0          	dc.w	4000
-  72  0057 0bb8          	dc.w	3000
-  73  0059 1e            	dc.b	30
-  74  005a 0000          	dc.w	0
-  75  005c 0000          	dc.w	0
-  76  005e 00            	dc.b	0
-  77  005f               _Reverse_Tbl:
-  78  005f 0bb8          	dc.w	3000
-  79  0061 0fa0          	dc.w	4000
-  80  0063 28            	dc.b	40
-  81  0064 0fa0          	dc.w	4000
-  82  0066 0d05          	dc.w	3333
-  83  0068 01            	dc.b	1
-  84  0069 0d05          	dc.w	3333
-  85  006b 0d05          	dc.w	3333
-  86  006d 05            	dc.b	5
-  87  006e 0d05          	dc.w	3333
-  88  0070 07d0          	dc.w	2000
-  89  0072 28            	dc.b	40
-  90  0073 07d0          	dc.w	2000
-  91  0075 0a6b          	dc.w	2667
-  92  0077 01            	dc.b	1
-  93  0078 0a6b          	dc.w	2667
-  94  007a 0a6b          	dc.w	2667
-  95  007c 05            	dc.b	5
-  96  007d 0a6b          	dc.w	2667
-  97  007f 0bb8          	dc.w	3000
-  98  0081 28            	dc.b	40
-  99  0082 0000          	dc.w	0
- 100  0084 0000          	dc.w	0
- 101  0086 00            	dc.b	0
- 134                     ; 82 void main(void)
- 134                     ; 83 {
- 136                     	switch	.text
- 137  0000               _main:
- 141                     ; 84 	Init_TIM2();
- 143  0000 cd0000        	call	_Init_TIM2
- 145                     ; 86 	rim();
- 148  0003 9a            rim
- 150                     ; 88 	ServoStep.Table = Forward_Tbl;
- 153  0004 ae000a        	ldw	x,#_Forward_Tbl
- 154  0007 bf00          	ldw	_ServoStep,x
- 155  0009               L12:
- 156                     ; 89 	while (1);
- 158  0009 20fe          	jra	L12
- 261                     	xdef	_main
- 262                     	xdef	_Reverse_Tbl
- 263                     	xdef	_Right_Tbl
- 264                     	xdef	_Left_Tbl
- 265                     	xref	_Init_TIM2
- 266                     	xref.b	_ServoStep
- 267                     	xdef	_Neutral
- 268                     	xdef	_Forward_Tbl
- 287                     	end
+  23  000a               _LED_Tbl:
+  24  000a 17            	dc.b	23
+  25  000b 8f            	dc.b	143
+  26  000c 5f            	dc.b	95
+  27  000d ff            	dc.b	255
+  28  000e               _Forward_Tbl:
+  29  000e 0bb8          	dc.w	3000
+  30  0010 0fa0          	dc.w	4000
+  31  0012 28            	dc.b	40
+  32  0013 0fa0          	dc.w	4000
+  33  0015 0bb8          	dc.w	3000
+  34  0017 01            	dc.b	1
+  35  0018 0bb8          	dc.w	3000
+  36  001a 0bb8          	dc.w	3000
+  37  001c 05            	dc.b	5
+  38  001d 0bb8          	dc.w	3000
+  39  001f 07d0          	dc.w	2000
+  40  0021 28            	dc.b	40
+  41  0022 07d0          	dc.w	2000
+  42  0024 0bb8          	dc.w	3000
+  43  0026 01            	dc.b	1
+  44  0027 0bb8          	dc.w	3000
+  45  0029 0bb8          	dc.w	3000
+  46  002b 05            	dc.b	5
+  47  002c 0000          	dc.w	0
+  48  002e 0000          	dc.w	0
+  49  0030 00            	dc.b	0
+  50  0031               _Left_Tbl:
+  51  0031 0bb8          	dc.w	3000
+  52  0033 09c4          	dc.w	2500
+  53  0035 0f            	dc.b	15
+  54  0036 09c4          	dc.w	2500
+  55  0038 09c4          	dc.w	2500
+  56  003a 14            	dc.b	20
+  57  003b 09c4          	dc.w	2500
+  58  003d 07d0          	dc.w	2000
+  59  003f 0f            	dc.b	15
+  60  0040 07d0          	dc.w	2000
+  61  0042 0bb8          	dc.w	3000
+  62  0044 1e            	dc.b	30
+  63  0045 0000          	dc.w	0
+  64  0047 0000          	dc.w	0
+  65  0049 00            	dc.b	0
+  66  004a               _Right_Tbl:
+  67  004a 0bb8          	dc.w	3000
+  68  004c 0dac          	dc.w	3500
+  69  004e 0f            	dc.b	15
+  70  004f 0dac          	dc.w	3500
+  71  0051 0dac          	dc.w	3500
+  72  0053 14            	dc.b	20
+  73  0054 0dac          	dc.w	3500
+  74  0056 0fa0          	dc.w	4000
+  75  0058 0f            	dc.b	15
+  76  0059 0fa0          	dc.w	4000
+  77  005b 0bb8          	dc.w	3000
+  78  005d 1e            	dc.b	30
+  79  005e 0000          	dc.w	0
+  80  0060 0000          	dc.w	0
+  81  0062 00            	dc.b	0
+ 118                     ; 72 void main(void)
+ 118                     ; 73 {
+ 120                     	switch	.text
+ 121  0000               _main:
+ 125                     ; 75 	LED_PORT->DDR = LED_MASK;
+ 127  0000 35f8500c      	mov	20492,#248
+ 128                     ; 76 	LED_PORT->CR1 = LED_MASK;
+ 130  0004 35f8500d      	mov	20493,#248
+ 131                     ; 77 	LED_PORT->ODR = LED_Tbl[LED_OFF];
+ 133  0008 35ff500a      	mov	20490,#255
+ 134                     ; 79 	Init_TIM2();
+ 136  000c cd0000        	call	_Init_TIM2
+ 138                     ; 81 	rim();
+ 141  000f 9a            rim
+ 143  0010               L13:
+ 144                     ; 85 		if(IR_State.Ready)
+ 146  0010 3d08          	tnz	_IR_State+8
+ 147  0012 27fc          	jreq	L13
+ 148                     ; 88 			switch(IR_State.Byte[IR_CMD])
+ 150  0014 b602          	ld	a,_IR_State+2
+ 152                     ; 106 				  break;
+ 153  0016 a015          	sub	a,#21
+ 154  0018 2710          	jreq	L3
+ 155  001a 4a            	dec	a
+ 156  001b 2718          	jreq	L5
+ 157  001d a002          	sub	a,#2
+ 158  001f 272a          	jreq	L11
+ 159  0021 a02a          	sub	a,#42
+ 160  0023 271b          	jreq	L7
+ 161  0025 4a            	dec	a
+ 162  0026 2723          	jreq	L11
+ 163  0028 2028          	jra	L14
+ 164  002a               L3:
+ 165                     ; 90 			  case IR_Right:
+ 165                     ; 91 					ServoStep.NextTable = Right_Tbl;
+ 167  002a ae004a        	ldw	x,#_Right_Tbl
+ 168  002d bf02          	ldw	_ServoStep+2,x
+ 169                     ; 92 					LED_PORT->ODR = LED_Tbl[LED_RIGHT]; 
+ 171  002f 355f500a      	mov	20490,#95
+ 172                     ; 93 					break;
+ 174  0033 201d          	jra	L14
+ 175  0035               L5:
+ 176                     ; 94 				case IR_Left:
+ 176                     ; 95 					ServoStep.NextTable = Left_Tbl;
+ 178  0035 ae0031        	ldw	x,#_Left_Tbl
+ 179  0038 bf02          	ldw	_ServoStep+2,x
+ 180                     ; 96 					LED_PORT->ODR = LED_Tbl[LED_LEFT]; 
+ 182  003a 358f500a      	mov	20490,#143
+ 183                     ; 97 					break;
+ 185  003e 2012          	jra	L14
+ 186  0040               L7:
+ 187                     ; 98 				case IR_Up:
+ 187                     ; 99 					ServoStep.NextTable = Forward_Tbl;
+ 189  0040 ae000e        	ldw	x,#_Forward_Tbl
+ 190  0043 bf02          	ldw	_ServoStep+2,x
+ 191                     ; 100 					LED_PORT->ODR = LED_Tbl[LED_FORWARD];
+ 193  0045 3517500a      	mov	20490,#23
+ 194                     ; 101 					break;
+ 196  0049 2007          	jra	L14
+ 197  004b               L11:
+ 198                     ; 102 				case IR_Down:
+ 198                     ; 103 				case IR_Select:
+ 198                     ; 104 					ServoStep.NextTable = NULL;
+ 200  004b 5f            	clrw	x
+ 201  004c bf02          	ldw	_ServoStep+2,x
+ 202                     ; 105 					LED_PORT->ODR = LED_Tbl[LED_OFF];
+ 204  004e 35ff500a      	mov	20490,#255
+ 205                     ; 106 				  break;
+ 207  0052               L14:
+ 208                     ; 109 			IR_State.Ready = 0;
+ 210  0052 3f08          	clr	_IR_State+8
+ 211  0054 20ba          	jra	L13
+ 312                     	xdef	_main
+ 313                     	xdef	_Right_Tbl
+ 314                     	xdef	_Left_Tbl
+ 315                     	xdef	_Forward_Tbl
+ 316                     	xdef	_LED_Tbl
+ 317                     	xdef	_Neutral
+ 318                     	xref.b	_IR_State
+ 319                     	xref	_Init_TIM2
+ 320                     	xref.b	_ServoStep
+ 339                     	end

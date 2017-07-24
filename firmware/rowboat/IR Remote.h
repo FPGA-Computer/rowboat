@@ -32,13 +32,12 @@ typedef struct
 	uint8_t		Scratch;
 	int8_t		Bit;
 	uint8_t		Word;
+	uint8_t		Overflow;
+	volatile uint8_t Ready;
 	uint16_t	Capture;
-	uint16_t	Offset;
 } IR_Data;
 
 extern IR_Data IR_State;
-extern FIFO_Data_t IR_Buf[];
-void IR_Init(void);
 
 enum IR_Bit
 {
@@ -59,13 +58,23 @@ enum IR_Bit
 // 1.6875ms space for '1'
 #define IR_NEC_BIT1			(1687500UL/TIM2_RES)
 
-#define IR_PULSE_TOL		0.1
+#define IR_PULSE_TOL		0.2
 
 #define IR_PULSE_MIN(X)	((X)*(1-IR_PULSE_TOL))
 #define IR_PULSE_MAX(X)	((X)*(1+IR_PULSE_TOL))
 
 #define IR_PULSE(X,Y)		(((Y)>=IR_PULSE_MIN(X))&&((Y)<=IR_PULSE_MAX(X)))
 
+// NEC2 protocol
 #define NEC2_IR 1
+
+// Raw IR packet ordering
+enum IR_RAW { IR_ADDRH, IR_ADDRL, IR_CMD, IR_CMD_COMP };
+
+// TV Device address for Insignia TV
+#define IR_ADDRESS_H		0x86
+#define IR_ADDRESS_L		0x05
+
+enum IR_Cmd { IR_Right = 21, IR_Left = 22, IR_Up = 66, IR_Down = 67, IR_Select = 24 };
 
 #endif

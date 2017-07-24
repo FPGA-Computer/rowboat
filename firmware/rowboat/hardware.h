@@ -68,7 +68,6 @@ enum _PD { PD1=0x02, PD2=0x04, PD3=0x08, PD4=0x10, PD5=0x20, PD6=0x40 };
 #define SERVO_ROW2							(SERVO_ROW*2)
 #define SERVO_LONGWAIT					20
 
-
 typedef struct
 {
 	int16_t From;
@@ -78,7 +77,8 @@ typedef struct
 
 typedef struct
 {
-	volatile ServoTable_t *Table;					// Starting location of table
+	volatile ServoTable_t *Table;					// Current table
+	volatile ServoTable_t *NextTable;			// Next table	
 	uint8_t Index;												// Current table index
   int16_t PWM;													// Current PWM value
 	int16_t Delta;												// Step Delta
@@ -89,8 +89,16 @@ typedef struct
 #define SERVO_PORT							GPIOD
 #define SERVO_PIN								PD3
 
-#define IR_PORT									GPIOD
-#define IR_PIN									PD2
+#define IR_PORT									GPIOA
+#define IR_PIN									PA3
+
+#define LED_PORT								GPIOC
+#define LED_MASK								(PC7|PC6|PC5|PC4|PC3)
+#define LED_SEG_G								PC7
+#define LED_SEG_F								PC6
+#define LED_SEG_E								PC5
+#define LED_SEG_D								PC4
+#define LED_SEG_A								PC3
 
 // uart
 #define UART_BAUD								115200UL
