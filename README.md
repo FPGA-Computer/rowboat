@@ -4,7 +4,7 @@ ropulsion which tends not to be efficient or practical.
 My entry is more in spirit with the silly cars in Wacky Races cartoon. 
 
 
-Project detail: https://hackaday.io/project/21617-unconventional-propulsion
+Project detail: http://hw-by-design.blogspot.com/2018/08/single-servo-for-propulsion-and-steering.html
 
 Firmware/
 Hardware/ - Eagle CAD schematic
@@ -23,4 +23,6 @@ Here: http://cosmicsoftware.com/download_stm8_free.php
 FAQ: http://cosmicsoftware.com/faq/faq50.php
 
 Additional info:
-https://hackaday.io/project/18286-misc-8-bit-uc-projects/log/52722-stm8-development-environment
+http://hw-by-design.blogspot.com/2018/07/misc-8-bit-uc-projects.html
+http://hw-by-design.blogspot.com/2018/07/8-bit-stm8-breakout-board.html
+
